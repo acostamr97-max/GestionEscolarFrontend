@@ -1,0 +1,3 @@
+/* Esta unica linea trae todo Tailwind v4. No hacen falta los viejos
+   @tailwind base/components/utilities ni un tailwind.config.js. */
+@import "tailwindcss";
