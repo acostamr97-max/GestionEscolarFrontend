@@ -1,18 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useLogin } from '../hooks/useLogin.js'
 
-/* ============================================================================
-   LoginScreen: pantalla de inicio de sesion.
-
-   Fijate que este componente casi NO tiene logica: toda la logica (estados,
-   llamada al backend, redireccion) vive en el hook useLogin. Aca solo:
-   - sacamos del hook lo que necesitamos,
-   - lo mostramos en pantalla,
-   - conectamos los inputs y el formulario a las funciones del hook.
-   ============================================================================ */
 export const LoginScreen = () => {
 
-    /* Traemos todo lo que el hook nos prepara */
     const {
         email, password,
         setEmail, setPassword,

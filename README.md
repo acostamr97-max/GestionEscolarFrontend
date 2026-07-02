@@ -1,4 +1,4 @@
-# Gestión Escolar — Frontend
+# Gestión Escolar de Nivel Inicial— Frontend
 
 Frontend del sistema de gestión escolar, hecho con **React + Vite**. Consume la API del backend (Express + MongoDB) y ofrece pantallas distintas según el rol del usuario: **director**, **docente** y **familia**.
 

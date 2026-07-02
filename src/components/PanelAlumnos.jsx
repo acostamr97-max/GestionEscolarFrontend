@@ -1,17 +1,9 @@
 import { useState } from 'react'
 import { useAlumnos } from '../hooks/useAlumnos.js'
 
-/* ============================================================================
-   PanelAlumnos: muestra y gestiona los alumnos de un aula.
-   Recibe el aula por props y usa el hook useAlumnos con su id.
-   Tiene un mini-formulario para agregar y un boton para quitar cada alumno.
-   ============================================================================ */
+/* apartado alumnos  */
 export const PanelAlumnos = ({ aula, alumnos, cargando, error, agregarAlumno, quitarAlumno }) => {
 
-    /* Le pasamos el id del aula al hook; el resto (cargar, agregar, quitar) ya
-       lo resuelve el hook por dentro. */
-
-    /* Estado del mini-formulario (presentacion) */
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
     const [dni, setDni] = useState(null)

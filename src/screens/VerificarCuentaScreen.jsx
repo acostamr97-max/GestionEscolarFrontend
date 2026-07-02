@@ -1,22 +1,11 @@
 import { Link, useSearchParams } from 'react-router-dom'
 
-/* ============================================================================
-   VerificarCuentaScreen: pantalla a la que el BACKEND redirige despues de
-   procesar el link de verificacion del email.
 
-   El backend agrega a la URL un parametro ?estado=... y aca lo leemos con el
-   hook useSearchParams para mostrar el mensaje correcto.
-
-   Estados que manda el backend: ok | ya-verificado | expirado | error
-   ============================================================================ */
 export const VerificarCuentaScreen = () => {
 
-    /* useSearchParams nos deja leer los parametros de la URL (lo que va despues
-       del "?"). Ej: en /verificar-cuenta?estado=ok, estado vale "ok". */
     const [searchParams] = useSearchParams()
     const estado = searchParams.get('estado')
 
-    /* Para cada estado posible definimos que mostrar */
     const contenidos = {
         'ok': {
             emoji: '✅',
@@ -44,7 +33,7 @@ export const VerificarCuentaScreen = () => {
         }
     }
 
-    /* Si el estado no es ninguno conocido, mostramos "error" por las dudas */
+
     const data = contenidos[estado] || contenidos['error']
 
     return (

@@ -2,10 +2,6 @@ import { useState, useEffect } from 'react'
 import { obtenerMisAulas } from '../services/aulaService.js'
 import { useAuth } from './useAuth.js'
 
-/* ============================================================================
-   useMisAulas: hook para la vista del docente.
-   Trae las aulas que tiene asignadas el docente logueado.
-   ============================================================================ */
 export function useMisAulas() {
     const { token } = useAuth()
 
@@ -32,7 +28,6 @@ export function useMisAulas() {
             }
         }
         cargar()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return { aulas, cargandoAulas, errorAulas }

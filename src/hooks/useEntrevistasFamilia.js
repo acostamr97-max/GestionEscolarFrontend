@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react'
 import { crearEntrevista, obtenerMisEntrevistas } from '../services/entrevistaService.js'
 import { useAuth } from './useAuth.js'
-
-/* ============================================================================
-   useEntrevistasFamilia: logica de la pantalla de entrevistas para la FAMILIA.
-   Permite crear una solicitud y ver las propias.
-   ============================================================================ */
+/* las familias solivitan entrevistas por ej paraa anotar a su hijo al jardin */
 export function useEntrevistasFamilia() {
     const { token } = useAuth()
 
@@ -13,7 +9,6 @@ export function useEntrevistasFamilia() {
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState(null)
 
-    /* Trae las entrevistas que solicito esta familia */
     const cargarEntrevistas = async () => {
         setCargando(true)
         setError(null)
@@ -34,10 +29,8 @@ export function useEntrevistasFamilia() {
 
     useEffect(() => {
         cargarEntrevistas()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    /* Crear una solicitud nueva. datos = { fecha, motivo } */
     const solicitarEntrevista = async (datos) => {
         try {
             const respuesta = await crearEntrevista(token, datos)

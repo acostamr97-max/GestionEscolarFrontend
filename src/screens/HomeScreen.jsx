@@ -1,18 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Navbar } from '../components/Navbar.jsx'
 import { useAuth } from '../hooks/useAuth.js'
-
-/* ============================================================================
-   HomeScreen: pantalla principal despues de iniciar sesion.
-   Muestra accesos distintos segun el rol del usuario:
-   - director: gestion de Aulas y de Entrevistas.
-   - docente:  sus aulas (con alumnos y asistencia).
-   - familia:  solicitar entrevistas.
-   ============================================================================ */
+/* segun el rol seleccionado muestra lo que gestiona cada uno. el rol director agrega docentes, asigna salas a los docentes y gestionas las entrevistas, el rol docente gestiona sus salas , agrega -quita alumnos, asistencia; rol familias -> solicita entrevista */
 export const HomeScreen = () => {
     const { usuario } = useAuth()
 
-    /* Una "tarjeta" de acceso reutilizable. La usamos varias veces abajo. */
     const Tarjeta = ({ to, emoji, titulo, descripcion }) => (
         <Link
             to={to}

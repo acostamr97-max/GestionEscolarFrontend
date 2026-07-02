@@ -1,10 +1,7 @@
 import { useState } from 'react'
 import { pedirRecuperacion } from '../services/authService.js'
 
-/* ============================================================================
-   useOlvideContrasena: logica de la pantalla "olvidé mi contraseña".
-   La persona ingresa su email y el backend le manda un mail con el link.
-   ============================================================================ */
+/* para poder recuoerar la contraseña */
 export function useOlvideContrasena() {
     const [email, setEmail] = useState('')
     const [error, setError] = useState(null)
@@ -25,8 +22,6 @@ export function useOlvideContrasena() {
                 return
             }
 
-            /* El backend responde el mismo mensaje exista o no el email
-               (para no revelar que cuentas estan registradas). */
             setExito(respuesta.message)
 
         } catch (problema) {

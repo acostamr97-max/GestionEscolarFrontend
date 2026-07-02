@@ -1,36 +1,18 @@
 import { useState } from 'react'
 import { useAlumnos } from '../hooks/useAlumnos.js'
 import { useAsistencia } from '../hooks/useAsistencia.js'
+/* apartado para la asistencia de la sala/aula, solo el docente registra la misma */
 
-/* ============================================================================
-   PanelAsistencia: toma de asistencia de un aula para una fecha.
-
-   Necesita dos cosas:
-   - la lista de alumnos del aula (hook useAlumnos),
-   - los registros de asistencia de ese dia (hook useAsistencia).
-
-   Para cada alumno busca si ya tiene un registro ese dia:
-   - si NO lo tiene -> muestra botones "Presente" / "Ausente" para crearlo.
-   - si YA lo tiene -> muestra su estado y permite cambiarlo.
-
-   La fecha por defecto es hoy (en formato YYYY-MM-DD, que es lo que espera
-   el input type="date" y el backend).
-   ============================================================================ */
 export const PanelAsistencia = ({ aula , alumnos}) => {
 
-    /* fechaHoy: arma la fecha de hoy como "2026-06-29".
-       toISOString() da algo como "2026-06-29T12:00:00.000Z"; con split('T')[0]
-       nos quedamos solo con la parte de la fecha. */
     const fechaHoy = new Date().toISOString().split('T')[0]
     const [fecha, setFecha] = useState(fechaHoy)
 
-    /* Alumnos del aula y asistencia de la fecha elegida */
     const { asistencias, marcarAsistencia, corregirAsistencia } = useAsistencia(aula._id, fecha)
 
-    /* Dado un alumno, busca su registro de asistencia del dia (o undefined) */
     const buscarAsistenciaDe = (alumnoId) => {
         return asistencias.find((a) => {
-            /* a.alumno puede venir como objeto (por el populate) o como id */
+          
             const idDelRegistro = a.alumno?._id || a.alumno
             return idDelRegistro === alumnoId
         })

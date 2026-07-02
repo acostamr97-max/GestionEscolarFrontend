@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useRecuperarCuenta } from '../hooks/useRecuperarCuenta.js'
 
-/* ============================================================================
-   RecuperarCuentaScreen: pantalla a la que lleva el link del mail.
-   Ofrece dos opciones:
-     A) Cambiar la contraseña (formulario con la nueva).
-     B) Entrar directo (sin cambiarla).
-   El token viene en la URL y lo maneja el hook useRecuperarCuenta.
-   ============================================================================ */
 export const RecuperarCuentaScreen = () => {
     const {
         token,
@@ -16,7 +9,6 @@ export const RecuperarCuentaScreen = () => {
         cambiarContrasena, entrarDirecto
     } = useRecuperarCuenta()
 
-    /* Si no vino token en la URL, el link es invalido */
     if (!token) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">

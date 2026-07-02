@@ -2,12 +2,6 @@ import { useState, useEffect } from 'react'
 import { obtenerAsistenciaDeAula, registrarAsistencia, actualizarAsistencia } from '../services/asistenciaService.js'
 import { useAuth } from './useAuth.js'
 
-/* ============================================================================
-   useAsistencia: hook con la logica de la asistencia de un aula en una fecha.
-
-   Recibe el aulaId y la fecha. Cuando cambian, trae los registros de asistencia
-   de ese aula ese dia. Permite marcar (presente/ausente) y corregir.
-   ============================================================================ */
 export function useAsistencia(aulaId, fecha) {
     const { token } = useAuth()
 
@@ -15,7 +9,6 @@ export function useAsistencia(aulaId, fecha) {
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState(null)
 
-    /* Trae la asistencia del aula para la fecha elegida */
     const cargarAsistencia = async () => {
         if (!aulaId) return
         setCargando(true)
@@ -35,14 +28,12 @@ export function useAsistencia(aulaId, fecha) {
         }
     }
 
-    /* Se recarga al cambiar de aula o de fecha */
+    
     useEffect(() => {
         cargarAsistencia()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [aulaId, fecha])
 
-    /* Marcar la asistencia de un alumno (crear un registro nuevo).
-       datos = { alumno, estado, fecha } */
+
     const marcarAsistencia = async (alumnoId, estado) => {
         try {
             const respuesta = await registrarAsistencia(token, {
@@ -61,7 +52,6 @@ export function useAsistencia(aulaId, fecha) {
         }
     }
 
-    /* Cambiar el estado de una asistencia ya registrada */
     const corregirAsistencia = async (asistenciaId, estado) => {
         try {
             const respuesta = await actualizarAsistencia(token, asistenciaId, { estado })

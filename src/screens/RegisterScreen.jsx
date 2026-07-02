@@ -1,14 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useRegister } from '../hooks/useRegister.js'
 
-/* ============================================================================
-   RegisterScreen: pantalla de registro de usuario.
-   Igual que el login, la logica esta en el hook useRegister. Aca solo se arma
-   el formulario y se conecta a ese hook.
-
-   El campo "rol" es un <select> con las 3 opciones que maneja el sistema:
-   director, docente y familia.
-   ============================================================================ */
 export const RegisterScreen = () => {
 
     const {

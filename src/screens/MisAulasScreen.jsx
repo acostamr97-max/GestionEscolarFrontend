@@ -4,16 +4,7 @@ import { useMisAulas } from '../hooks/useMisAulas.js'
 import { PanelAlumnos } from '../components/PanelAlumnos.jsx'
 import { PanelAsistencia } from '../components/PanelAsistencia.jsx'
 import { useAlumnos } from '../hooks/useAlumnos.js'
-
-/* ============================================================================
-   MisAulasScreen: pantalla principal del DOCENTE.
-
-   Muestra la lista de aulas que tiene asignadas. Al elegir un aula, aparecen
-   debajo dos paneles: uno para gestionar los alumnos de esa aula y otro para
-   tomar la asistencia.
-
-   El estado "aulaSeleccionada" (presentacion) decide que aula se esta viendo.
-   ============================================================================ */
+/* solo puede el rol docente, muesta la sala unica que tiene asignada , panel para agregar alumnos y para ver la asistencia */
 export const MisAulasScreen = () => {
     const { aulas, cargandoAulas, errorAulas } = useMisAulas()
 
@@ -21,8 +12,6 @@ export const MisAulasScreen = () => {
 
     const { alumnos, cargando, error, agregarAlumno, quitarAlumno } = useAlumnos(aulaSeleccionada?._id)
 
-
-    /* Guardamos el aula elegida (el objeto completo). null = ninguna elegida. */
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -38,7 +27,6 @@ export const MisAulasScreen = () => {
                 ) : aulas.length === 0 ? (
                     <p className="text-gray-500">Todavía no tenés aulas asignadas.</p>
                 ) : (
-                    /* Lista de aulas como botones. Al tocar una, se selecciona. */
                     <div className="flex flex-wrap gap-2 mb-6">
                         {aulas.map((aula) => (
                             <button

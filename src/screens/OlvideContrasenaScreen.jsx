@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useOlvideContrasena } from '../hooks/useOlvideContrasena.js'
 
-/* ============================================================================
-   OlvideContrasenaScreen: pantalla donde la persona ingresa su email para
-   recibir el mail de recuperacion.
-   ============================================================================ */
 export const OlvideContrasenaScreen = () => {
     const { email, setEmail, error, exito, cargando, manejarEnvio } = useOlvideContrasena()
 

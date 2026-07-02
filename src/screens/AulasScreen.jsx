@@ -3,29 +3,17 @@ import { Navbar } from '../components/Navbar.jsx'
 import { useAulas } from '../hooks/useAulas.js'
 import { Skeleton } from '@mui/material'
 
-/* ============================================================================
-   AulasScreen: pantalla de gestion de aulas (CRUD). Solo la usa el director.
 
-   La logica de datos (traer, crear, editar, borrar) esta en useAulas.
-   Aca manejamos solo cosas de PRESENTACION:
-   - los valores del formulario (nombre, docente, turno),
-   - cual aula se esta editando (o ninguna, si estamos creando).
-   ============================================================================ */
 export const AulasScreen = () => {
 
-    /* Logica de datos: viene toda del hook */
     const { aulas, docentes, cargando, error, guardarAula, borrarAula } = useAulas()
 
-    /* Estado del formulario (presentacion) */
     const [nombre, setNombre] = useState('')
     const [docente, setDocente] = useState('')
     const [turno, setTurno] = useState('maniana')
 
-    /* Si editandoId tiene un valor, estamos EDITANDO ese aula.
-       Si es null, estamos CREANDO una nueva. */
     const [editandoId, setEditandoId] = useState(null)
 
-    /* Limpia el formulario y vuelve al modo "crear" */
     const limpiarFormulario = () => {
         setNombre('')
         setDocente('')
@@ -33,22 +21,18 @@ export const AulasScreen = () => {
         setEditandoId(null)
     }
 
-    /* Cuando se envia el formulario: junta los datos y se los pasa al hook */
     const manejarSubmit = async (evento) => {
         evento.preventDefault()
         const datos = { nombre, docente, turno }
 
-        /* guardarAula decide crear o editar segun haya editandoId */
         const salioBien = await guardarAula(datos, editandoId)
         if (salioBien) {
             limpiarFormulario()
         }
     }
 
-    /* Cuando se toca "Editar" en un aula: cargamos sus datos en el formulario */
     const empezarEdicion = (aula) => {
         setNombre(aula.nombre)
-        /* aula.docente puede venir como objeto (por el populate del backend) */
         setDocente(aula.docente?._id || aula.docente || '')
         setTurno(aula.turno)
         setEditandoId(aula._id)

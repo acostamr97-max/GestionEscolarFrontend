@@ -3,18 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { resetearPassword, entrarConTokenRecuperacion } from '../services/authService.js'
 import { useAuth } from './useAuth.js'
 
-/* ============================================================================
-   useRecuperarCuenta: logica de la pantalla a la que lleva el link del mail.
-
-   Esa pantalla ofrece DOS opciones:
-   - Cambiar la contrasena (escribe una nueva).
-   - Entrar directo (sin cambiarla).
-
-   El token de recuperacion viene en la URL (?token=...). Lo leemos aca y lo
-   usamos en las dos acciones.
-   ============================================================================ */
 export function useRecuperarCuenta() {
-    /* El token viaja en la URL: /recuperar-cuenta?token=... */
     const [searchParams] = useSearchParams()
     const token = searchParams.get('token')
 
@@ -26,7 +15,6 @@ export function useRecuperarCuenta() {
     const navigate = useNavigate()
     const { login } = useAuth()
 
-    /* OPCION A: cambiar la contrasena */
     const cambiarContrasena = async (evento) => {
         evento.preventDefault()
         setError(null)
@@ -42,7 +30,6 @@ export function useRecuperarCuenta() {
             }
 
             setExito(respuesta.message)
-            /* Tras cambiarla, la llevamos al login despues de unos segundos */
             setTimeout(() => navigate('/login'), 2500)
 
         } catch (problema) {
@@ -53,7 +40,6 @@ export function useRecuperarCuenta() {
         }
     }
 
-    /* OPCION B: entrar directo sin cambiar la contrasena */
     const entrarDirecto = async () => {
         setError(null)
         setCargando(true)
@@ -66,7 +52,6 @@ export function useRecuperarCuenta() {
                 return
             }
 
-            /* Igual que en el login: guardamos sesion y vamos al home */
             login(respuesta.data.access_token, respuesta.data.user)
             navigate('/home')
 

@@ -1,17 +1,14 @@
 import { Navbar } from '../components/Navbar.jsx'
 import { useEntrevistasDirector } from '../hooks/useEntrevistasDirector.js'
 
-/* ============================================================================
-   EntrevistasDirectorScreen: pantalla de entrevistas para el rol DIRECTOR.
-   Lista todas las solicitudes y permite programarlas o cancelarlas.
-   ============================================================================ */
+/* las entrevistAS solo las maneja el rol director y puede programar o cancelar */
 export const EntrevistasDirectorScreen = () => {
     const { entrevistas, cargando, error, cambiarEstado } = useEntrevistasDirector()
 
     const colorEstado = (estado) => {
         if (estado === 'programada') return 'text-green-600'
         if (estado === 'cancelada') return 'text-red-600'
-        return 'text-orange-600'   /* pendiente */
+        return 'text-orange-600'  
     }
 
     return (

@@ -2,15 +2,9 @@ import { useState } from 'react'
 import { Navbar } from '../components/Navbar.jsx'
 import { useEntrevistasFamilia } from '../hooks/useEntrevistasFamilia.js'
 
-/* ============================================================================
-   EntrevistasFamiliaScreen: pantalla de entrevistas para el rol FAMILIA.
-   Permite solicitar una entrevista (fecha + motivo) y ver el listado de las
-   solicitudes propias con su estado.
-   ============================================================================ */
 export const EntrevistasFamiliaScreen = () => {
     const { entrevistas, cargando, error, solicitarEntrevista } = useEntrevistasFamilia()
 
-    /* Estado del formulario */
     const [fecha, setFecha] = useState('')
     const [motivo, setMotivo] = useState('')
 
@@ -22,8 +16,6 @@ export const EntrevistasFamiliaScreen = () => {
             setMotivo('')
         }
     }
-
-    /* Pinta el estado de cada entrevista con un color segun corresponda */
     const colorEstado = (estado) => {
         if (estado === 'programada') return 'text-green-600'
         if (estado === 'cancelada') return 'text-red-600'
